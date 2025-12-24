@@ -1,34 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mockify – Chat Generator</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fake Chat Generator | WhatsApp & Instagram</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-comment-dots"></i>
+                <h1>Fake Chat Generator</h1>
+            </div>
+            <p class="tagline">Create realistic chat screenshots for testing & mockups</p>
+            
+            <div class="disclaimer">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <strong>Educational Use Only</strong>
+                    <p>For testing, prototyping, and presentations. Do not misuse.</p>
+                </div>
+            </div>
+        </header>
 
-  <h1>Mockify – WhatsApp Chat Generator</h1>
-  <p class="subtitle">Mockup only • For fun & design</p>
+        <nav class="platform-tabs">
+            <button class="tab-btn active" data-platform="whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </button>
+            <button class="tab-btn" data-platform="instagram">
+                <i class="fab fa-instagram"></i> Instagram
+            </button>
+        </nav>
 
-  <div class="phone">
-    <div id="chat" class="chat">
-      <div class="message bot">Welcome to Mockify 👋</div>
+        <main>
+            <!-- WhatsApp Generator -->
+            <section id="whatsapp-generator" class="generator-section active">
+                <div class="controls-panel">
+                    <h2><i class="fab fa-whatsapp"></i> WhatsApp Chat Settings</h2>
+                    
+                    <div class="form-group">
+                        <label for="wa-contact">
+                            <i class="fas fa-user-friends"></i> Contact Name
+                        </label>
+                        <input type="text" id="wa-contact" value="John Smith" placeholder="Contact name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="wa-user">
+                            <i class="fas fa-user"></i> Your Name
+                        </label>
+                        <input type="text" id="wa-user" value="You" placeholder="Your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="wa-status">
+                            <i class="fas fa-circle"></i> Status
+                        </label>
+                        <input type="text" id="wa-status" value="Online" placeholder="Online/Last seen">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="wa-chat">
+                            <i class="fas fa-comments"></i> Conversation
+                            <span class="hint">Format: Name: Message</span>
+                        </label>
+                        <textarea id="wa-chat" rows="8">
+John Smith: Hey! Are you free tomorrow?
+You: Yes, I should be. What's up?
+John Smith: Want to grab lunch? There's a new place downtown
+You: Sounds good! What time?
+John Smith: How about 1 PM?
+You: Perfect! See you then
+John Smith: Great! I'll send you the location
+You: Thanks! Looking forward to it
+John Smith: 😊👍
+                        </textarea>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="btn btn-secondary" id="wa-random">
+                            <i class="fas fa-random"></i> Random Chat
+                        </button>
+                        <button class="btn btn-primary" id="wa-generate">
+                            <i class="fas fa-sync"></i> Update Preview
+                        </button>
+                        <button class="btn btn-success" id="wa-download">
+                            <i class="fas fa-download"></i> Download Screenshot
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="preview-panel">
+                    <div class="preview-header">
+                        <h3><i class="fas fa-eye"></i> Live Preview</h3>
+                        <div class="preview-actions">
+                            <button class="btn-sm" id="wa-refresh">
+                                <i class="fas fa-redo"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-preview whatsapp-preview" id="whatsapp-preview">
+                        <!-- WhatsApp chat will be rendered here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Instagram Generator -->
+            <section id="instagram-generator" class="generator-section">
+                <div class="controls-panel">
+                    <h2><i class="fab fa-instagram"></i> Instagram DM Settings</h2>
+                    
+                    <div class="form-group">
+                        <label for="ig-contact">
+                            <i class="fas fa-user-friends"></i> Contact Username
+                        </label>
+                        <input type="text" id="ig-contact" value="sarah.creative" placeholder="Username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ig-user">
+                            <i class="fas fa-user"></i> Your Username
+                        </label>
+                        <input type="text" id="ig-user" value="yourstyle" placeholder="Your username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ig-status">
+                            <i class="fas fa-clock"></i> Active Status
+                        </label>
+                        <input type="text" id="ig-status" value="Active 1h ago" placeholder="Active status">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ig-chat">
+                            <i class="fas fa-comments"></i> Conversation
+                            <span class="hint">Format: username: Message</span>
+                        </label>
+                        <textarea id="ig-chat" rows="8">
+sarah.creative: Loved your latest post! ✨
+yourstyle: Thank you! Your photography is amazing
+sarah.creative: That means a lot coming from you!
+yourstyle: We should collaborate sometime
+sarah.creative: I'd love that! What do you have in mind?
+yourstyle: Maybe a photo shoot next weekend?
+sarah.creative: Perfect! I'm free Saturday
+yourstyle: Great! I'll send you the details
+sarah.creative: Can't wait! 😍📸
+                        </textarea>
+                    </div>
+                    
+                    <div class="button-group">
+                        <button class="btn btn-secondary" id="ig-random">
+                            <i class="fas fa-random"></i> Random Chat
+                        </button>
+                        <button class="btn btn-primary" id="ig-generate">
+                            <i class="fas fa-sync"></i> Update Preview
+                        </button>
+                        <button class="btn btn-success" id="ig-download">
+                            <i class="fas fa-download"></i> Download Screenshot
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="preview-panel">
+                    <div class="preview-header">
+                        <h3><i class="fas fa-eye"></i> Live Preview</h3>
+                        <div class="preview-actions">
+                            <button class="btn-sm" id="ig-refresh">
+                                <i class="fas fa-redo"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-preview instagram-preview" id="instagram-preview">
+                        <!-- Instagram chat will be rendered here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p>© 2024 Fake Chat Generator | For legitimate testing purposes only</p>
+                <p class="footer-note">
+                    <i class="fas fa-info-circle"></i>
+                    This tool generates fake data. Never use for deception or fraud.
+                </p>
+            </div>
+        </footer>
     </div>
-  </div>
 
-  <div class="controls">
-    <input id="name" placeholder="Name" />
-    <input id="text" placeholder="Message" />
-    <button onclick="addMessage()">Add Message</button>
-  </div>
-
-  <p class="disclaimer">
-    ⚠️ Mockify is a simulator for entertainment and design only.
-    All content is fictional.
-  </p>
-
-  <script src="script.js"></script>
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@faker-js/faker@7.6.0/dist/faker.min.js"></script>
+    
+    <!-- Our Script -->
+    <script src="script.js"></script>
 </body>
 </html>
-

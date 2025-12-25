@@ -3,335 +3,503 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mockify | Fake Chat Generator</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Mockify - Chat & Social Media Mockup Generator</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/chat--v1.png">
-    <meta name="theme-color" content="#7C3AED">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Generate realistic chat and social media mockups for design, entertainment, and prototyping.">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <div class="logo-icon">M</div>
-                <div class="logo-text">
-                    <h1>Mockify</h1>
-                    <p class="tagline">Fake Data & Chat Generator</p>
-                </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-comment-dots"></i>
+                <span class="logo-text">Mockify</span>
             </div>
-            
-            <nav class="main-nav">
-                <a href="#" class="nav-link active"><i class="fas fa-comments"></i> Chats</a>
-                <a href="#" class="nav-link"><i class="fas fa-user"></i> Profiles</a>
-                <a href="#" class="nav-link"><i class="fas fa-envelope"></i> Emails</a>
-                <a href="#" class="nav-link"><i class="fas fa-file-alt"></i> Documents</a>
-                <a href="#" class="nav-link"><i class="fas fa-cog"></i> More</a>
-            </nav>
-            
-            <div class="disclaimer">
-                <i class="fas fa-shield-alt"></i>
-                <div>
-                    <strong>100% Fake Data</strong>
-                    <p>For testing, design mockups & prototyping only</p>
-                </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#generator">Generator</a></li>
+                <li><a href="#templates">Templates</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="btn-login">Log In</button>
+                <button class="btn-signup">Sign Up Free</button>
             </div>
-        </header>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
 
-        <div class="content-wrapper">
-            <aside class="sidebar">
-                <h3><i class="fas fa-bolt"></i> Quick Tools</h3>
-                <button class="sidebar-btn active" data-tool="whatsapp">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </button>
-                <button class="sidebar-btn" data-tool="instagram">
-                    <i class="fab fa-instagram"></i> Instagram
-                </button>
-                <button class="sidebar-btn" data-tool="facebook">
-                    <i class="fab fa-facebook-messenger"></i> Messenger
-                </button>
-                <button class="sidebar-btn" data-tool="telegram">
-                    <i class="fab fa-telegram"></i> Telegram
-                </button>
-                <button class="sidebar-btn" data-tool="sms">
-                    <i class="fas fa-sms"></i> SMS
-                </button>
-                
-                <div class="sidebar-divider"></div>
-                
-                <h3><i class="fas fa-magic"></i> Quick Actions</h3>
-                <button class="sidebar-btn" id="quick-random">
-                    <i class="fas fa-random"></i> Random Chat
-                </button>
-                <button class="sidebar-btn" id="quick-screenshot">
-                    <i class="fas fa-camera"></i> Take Screenshot
-                </button>
-                <button class="sidebar-btn" id="quick-template">
-                    <i class="fas fa-layer-group"></i> Use Template
-                </button>
-            </aside>
-
-            <main class="main-content">
-                <div class="tool-header">
-                    <h2><i class="fab fa-whatsapp"></i> WhatsApp Chat Generator</h2>
-                    <div class="tool-actions">
-                        <button class="btn btn-outline" id="save-template">
-                            <i class="fas fa-save"></i> Save
-                        </button>
-                        <button class="btn btn-outline" id="share-chat">
-                            <i class="fas fa-share"></i> Share
-                        </button>
-                        <button class="btn btn-primary" id="export-all">
-                            <i class="fas fa-file-export"></i> Export
-                        </button>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1 class="hero-title">Create Realistic Chat & Social Media <span class="highlight">Mockups</span></h1>
+                <p class="hero-subtitle">Design, prototype, or have fun with customizable mock conversations. Perfect for UI/UX designers, content creators, and developers.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" id="start-generating">
+                        <i class="fas fa-bolt"></i> Start Generating
+                    </button>
+                    <button class="btn-secondary">
+                        <i class="fas fa-play-circle"></i> Watch Demo
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">10,000+</span>
+                        <span class="stat-label">Mockups Created</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">2,500+</span>
+                        <span class="stat-label">Happy Users</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Templates</span>
                     </div>
                 </div>
-
-                <div class="generator-area">
-                    <div class="controls-section">
-                        <div class="control-group">
-                            <h3><i class="fas fa-sliders-h"></i> Chat Settings</h3>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="contact-name">
-                                        <i class="fas fa-user-friends"></i> Contact
-                                    </label>
-                                    <input type="text" id="contact-name" value="Alex Johnson" placeholder="Contact name">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="user-name">
-                                        <i class="fas fa-user"></i> Your Name
-                                    </label>
-                                    <input type="text" id="user-name" value="You" placeholder="Your name">
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="chat-status">
-                                        <i class="fas fa-circle"></i> Status
-                                    </label>
-                                    <select id="chat-status">
-                                        <option>Online</option>
-                                        <option>Last seen recently</option>
-                                        <option>Last seen today at 10:30 AM</option>
-                                        <option>Typing...</option>
-                                        <option>Recording...</option>
-                                    </select>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="chat-theme">
-                                        <i class="fas fa-palette"></i> Theme
-                                    </label>
-                                    <select id="chat-theme">
-                                        <option>Default</option>
-                                        <option>Dark</option>
-                                        <option>Blue</option>
-                                        <option>Pink</option>
-                                        <option>Custom</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="chat-conversation">
-                                    <i class="fas fa-comment-dots"></i> Conversation
-                                    <span class="hint">(Format: Name: Message)</span>
-                                </label>
-                                <div class="chat-editor">
-                                    <div class="editor-toolbar">
-                                        <button class="editor-btn"><i class="fas fa-bold"></i></button>
-                                        <button class="editor-btn"><i class="fas fa-italic"></i></button>
-                                        <button class="editor-btn"><i class="fas fa-smile"></i></button>
-                                        <button class="editor-btn"><i class="fas fa-image"></i></button>
-                                        <button class="editor-btn"><i class="fas fa-paperclip"></i></button>
-                                        <div class="editor-spacer"></div>
-                                        <button class="editor-btn" id="format-help">
-                                            <i class="fas fa-question-circle"></i> Format Help
-                                        </button>
+            </div>
+            <div class="hero-preview">
+                <div class="mockup-container">
+                    <div class="mockup-phone">
+                        <div class="phone-screen">
+                            <div class="chat-header">
+                                <div class="chat-contact">
+                                    <div class="avatar">
+                                        <i class="fas fa-user-circle"></i>
                                     </div>
-                                    <textarea id="chat-conversation" rows="10">
-Alex Johnson: Hey! Are we still meeting tomorrow?
-You: Yes, definitely! 2 PM at the coffee shop?
-Alex Johnson: Perfect! I'll be there
-You: Great! Don't forget the documents
-Alex Johnson: I have them ready
-You: Awesome! See you tomorrow then
-Alex Johnson: Looking forward to it! 😊
-You: Same here!
-Alex Johnson: 👍
-                                    </textarea>
+                                    <div class="contact-info">
+                                        <h4>Alex Morgan</h4>
+                                        <p>Online now</p>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="message-count">
-                                    <i class="fas fa-hashtag"></i> Message Count: <span id="count-display">8</span>
-                                </label>
-                                <input type="range" id="message-count" min="3" max="20" value="8">
+                            <div class="chat-messages" id="demo-chat">
+                                <!-- Messages will be generated by JS -->
                             </div>
-                            
-                            <div class="action-buttons">
-                                <button class="btn btn-secondary" id="btn-randomize">
-                                    <i class="fas fa-dice"></i> Randomize Chat
-                                </button>
-                                <button class="btn btn-primary" id="btn-preview">
-                                    <i class="fas fa-eye"></i> Update Preview
-                                </button>
-                                <button class="btn btn-success" id="btn-download">
-                                    <i class="fas fa-download"></i> Download PNG
-                                </button>
+                            <div class="chat-input">
+                                <input type="text" placeholder="Type a message..." disabled>
+                                <button disabled><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generator Section -->
+    <section id="generator" class="generator-section">
+        <div class="section-container">
+            <h2 class="section-title">Custom Mockup Generator</h2>
+            <p class="section-subtitle">Create your own custom chat or social media mockup in seconds</p>
+            
+            <div class="generator-container">
+                <div class="config-panel">
+                    <div class="config-group">
+                        <h3><i class="fas fa-cog"></i> Platform</h3>
+                        <div class="platform-options">
+                            <div class="platform-option active" data-platform="whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>WhatsApp</span>
+                            </div>
+                            <div class="platform-option" data-platform="imessage">
+                                <i class="fas fa-message"></i>
+                                <span>iMessage</span>
+                            </div>
+                            <div class="platform-option" data-platform="instagram">
+                                <i class="fab fa-instagram"></i>
+                                <span>Instagram</span>
+                            </div>
+                            <div class="platform-option" data-platform="twitter">
+                                <i class="fab fa-twitter"></i>
+                                <span>Twitter</span>
+                            </div>
+                            <div class="platform-option" data-platform="facebook">
+                                <i class="fab fa-facebook-messenger"></i>
+                                <span>Messenger</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="preview-section">
-                        <div class="preview-header">
-                            <h3><i class="fas fa-mobile-alt"></i> Live Preview</h3>
-                            <div class="preview-controls">
-                                <button class="preview-btn active" data-view="mobile">
-                                    <i class="fas fa-mobile-alt"></i> Mobile
-                                </button>
-                                <button class="preview-btn" data-view="desktop">
-                                    <i class="fas fa-desktop"></i> Desktop
-                                </button>
-                                <button class="preview-btn" id="btn-refresh">
-                                    <i class="fas fa-redo"></i>
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div class="device-mockup">
-                            <div class="device-frame">
-                                <div class="device-screen" id="chat-preview">
-                                    <!-- Chat will be rendered here by JavaScript -->
+                    <div class="config-group">
+                        <h3><i class="fas fa-user-friends"></i> Participants</h3>
+                        <div class="participant-controls">
+                            <div class="participant">
+                                <div class="avatar small">
+                                    <i class="fas fa-user"></i>
                                 </div>
+                                <input type="text" class="name-input" value="You" placeholder="Name">
+                                <select class="color-select">
+                                    <option value="#3b82f6">Blue</option>
+                                    <option value="#10b981">Green</option>
+                                    <option value="#f59e0b">Orange</option>
+                                    <option value="#ef4444">Red</option>
+                                </select>
                             </div>
-                            
-                            <div class="device-actions">
-                                <button class="device-btn" id="btn-screenshot">
-                                    <i class="fas fa-camera"></i> Screenshot
-                                </button>
-                                <button class="device-btn" id="btn-copy">
-                                    <i class="fas fa-copy"></i> Copy Text
-                                </button>
-                                <button class="device-btn" id="btn-share">
-                                    <i class="fas fa-share-alt"></i> Share
-                                </button>
+                            <div class="participant">
+                                <div class="avatar small">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <input type="text" class="name-input" value="Friend" placeholder="Name">
+                                <select class="color-select">
+                                    <option value="#10b981">Green</option>
+                                    <option value="#3b82f6">Blue</option>
+                                    <option value="#f59e0b">Orange</option>
+                                    <option value="#ef4444">Red</option>
+                                </select>
                             </div>
+                            <button class="btn-add-participant">
+                                <i class="fas fa-plus"></i> Add Person
+                            </button>
                         </div>
-                        
-                        <div class="preview-stats">
-                            <div class="stat">
-                                <i class="fas fa-comment"></i>
-                                <span>Messages: <strong>8</strong></span>
+                    </div>
+                    
+                    <div class="config-group">
+                        <h3><i class="fas fa-comment-alt"></i> Messages</h3>
+                        <div class="message-controls">
+                            <div class="message-input-group">
+                                <input type="text" id="new-message" placeholder="Type a message...">
+                                <select id="message-sender">
+                                    <option value="0">You</option>
+                                    <option value="1">Friend</option>
+                                </select>
+                                <button id="add-message">
+                                    <i class="fas fa-plus"></i>
+                                </button>
                             </div>
-                            <div class="stat">
-                                <i class="fas fa-clock"></i>
-                                <span>Time Span: <strong>15 min</strong></span>
+                            <div class="message-list" id="message-list">
+                                <!-- Messages will be added here -->
                             </div>
-                            <div class="stat">
-                                <i class="fas fa-user-friends"></i>
-                                <span>Participants: <strong>2</strong></span>
-                            </div>
-                            <div class="stat">
-                                <i class="fas fa-file-image"></i>
-                                <span>Image Ready</span>
+                            <button class="btn-generate-random">
+                                <i class="fas fa-dice"></i> Generate Random Chat
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="config-group">
+                        <h3><i class="fas fa-magic"></i> Customize</h3>
+                        <div class="customize-controls">
+                            <label>
+                                <input type="checkbox" id="show-time" checked> Show timestamps
+                            </label>
+                            <label>
+                                <input type="checkbox" id="show-status" checked> Show online status
+                            </label>
+                            <label>
+                                <input type="checkbox" id="show-avatars" checked> Show profile pictures
+                            </label>
+                            <div class="theme-select">
+                                <label>Theme:</label>
+                                <select id="theme-select">
+                                    <option value="light">Light</option>
+                                    <option value="dark">Dark</option>
+                                    <option value="auto">Auto</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="templates-section">
-                    <h3><i class="fas fa-th-large"></i> Quick Templates</h3>
-                    <div class="templates-grid">
-                        <div class="template-card" data-template="business">
-                            <div class="template-icon">
-                                <i class="fas fa-briefcase"></i>
-                            </div>
-                            <h4>Business Meeting</h4>
-                            <p>Professional conversation</p>
-                        </div>
-                        <div class="template-card" data-template="friends">
-                            <div class="template-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h4>Friends Chat</h4>
-                            <p>Casual conversation</p>
-                        </div>
-                        <div class="template-card" data-template="family">
-                            <div class="template-icon">
-                                <i class="fas fa-home"></i>
-                            </div>
-                            <h4>Family Group</h4>
-                            <p>Family chat template</p>
-                        </div>
-                        <div class="template-card" data-template="support">
-                            <div class="template-icon">
-                                <i class="fas fa-headset"></i>
-                            </div>
-                            <h4>Customer Support</h4>
-                            <p>Support conversation</p>
+                <div class="preview-panel">
+                    <div class="preview-header">
+                        <h3>Live Preview</h3>
+                        <div class="preview-actions">
+                            <button class="btn-action" id="download-png">
+                                <i class="fas fa-download"></i> PNG
+                            </button>
+                            <button class="btn-action" id="copy-html">
+                                <i class="fas fa-code"></i> HTML
+                            </button>
+                            <button class="btn-action" id="share-link">
+                                <i class="fas fa-share"></i> Share
+                            </button>
                         </div>
                     </div>
+                    <div class="preview-content" id="live-preview">
+                        <!-- Live preview will be rendered here -->
+                    </div>
                 </div>
-            </main>
+            </div>
         </div>
+    </section>
 
-        <footer>
-            <div class="footer-content">
+    <!-- Templates Section -->
+    <section id="templates" class="templates-section">
+        <div class="section-container">
+            <h2 class="section-title">Ready-to-Use Templates</h2>
+            <p class="section-subtitle">Choose from our collection of pre-made templates for various scenarios</p>
+            
+            <div class="template-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="funny">Funny</button>
+                <button class="filter-btn" data-filter="business">Business</button>
+                <button class="filter-btn" data-filter="dating">Dating</button>
+                <button class="filter-btn" data-filter="drama">Drama</button>
+                <button class="filter-btn" data-filter="social">Social Media</button>
+            </div>
+            
+            <div class="templates-grid">
+                <!-- Templates will be loaded via JS -->
+            </div>
+            
+            <div class="section-footer">
+                <button class="btn-secondary" id="load-more-templates">
+                    <i class="fas fa-sync-alt"></i> Load More Templates
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="section-container">
+            <h2 class="section-title">Why Choose Mockify?</h2>
+            <p class="section-subtitle">Powerful features for designers, developers, and content creators</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Lightning Fast</h3>
+                    <p>Generate mockups in seconds with our intuitive interface and powerful engine.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Fully Customizable</h3>
+                    <p>Change colors, names, messages, timestamps, and platform styles to match your needs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3>Multiple Export Options</h3>
+                    <p>Download as PNG, JPG, SVG, or copy HTML/CSS code for your projects.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Privacy First</h3>
+                    <p>All data stays in your browser. We don't store your conversations or personal information.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Developer Friendly</h3>
+                    <p>API access, webhooks, and embed options for developers and teams.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3>Unlimited Generations</h3>
+                    <p>Free plan includes unlimited mockup generations with watermarks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing-section">
+        <div class="section-container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle">Choose the plan that's right for you</p>
+            
+            <div class="pricing-toggle">
+                <span>Monthly</span>
+                <label class="switch">
+                    <input type="checkbox" id="pricing-toggle">
+                    <span class="slider"></span>
+                </label>
+                <span>Yearly <span class="discount-badge">Save 20%</span></span>
+            </div>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Free</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">0</span>
+                            <span class="period">/forever</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Unlimited mockup generations</li>
+                        <li><i class="fas fa-check"></i> Basic templates</li>
+                        <li><i class="fas fa-check"></i> Watermarked exports</li>
+                        <li><i class="fas fa-check"></i> PNG & JPG downloads</li>
+                        <li><i class="fas fa-times"></i> No API access</li>
+                        <li><i class="fas fa-times"></i> No priority support</li>
+                    </ul>
+                    <button class="btn-pricing">Get Started Free</button>
+                </div>
+                
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Pro</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount" data-monthly="9" data-yearly="7">9</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Free</li>
+                        <li><i class="fas fa-check"></i> No watermarks</li>
+                        <li><i class="fas fa-check"></i> All templates unlocked</li>
+                        <li><i class="fas fa-check"></i> SVG & HTML/CSS exports</li>
+                        <li><i class="fas fa-check"></i> Basic API access</li>
+                        <li><i class="fas fa-check"></i> Email support</li>
+                    </ul>
+                    <button class="btn-pricing primary">Upgrade to Pro</button>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Team</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount" data-monthly="29" data-yearly="23">29</span>
+                            <span class="period">/month</span>
+                        </div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Everything in Pro</li>
+                        <li><i class="fas fa-check"></i> Team collaboration</li>
+                        <li><i class="fas fa-check"></i> Custom branding</li>
+                        <li><i class="fas fa-check"></i> Advanced API</li>
+                        <li><i class="fas fa-check"></i> Priority support</li>
+                        <li><i class="fas fa-check"></i> Analytics dashboard</li>
+                    </ul>
+                    <button class="btn-pricing">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="section-container">
+            <h2 class="section-title">About Mockify</h2>
+            <p class="section-subtitle">Created for designers, by designers</p>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Mockify was born from a simple need: creating realistic chat and social media mockups without the hassle of complex design tools. As UI/UX designers ourselves, we found the existing solutions either too complicated or not realistic enough.</p>
+                    <p>Our mission is to provide designers, developers, content creators, and educators with a tool that's both powerful and easy to use. Whether you're prototyping a new app, creating social media content, or just having fun, Mockify has you covered.</p>
+                    <p>All data generated stays in your browser. We believe in privacy by design, which means we don't store your conversations, personal information, or generated content on our servers.</p>
+                    <div class="about-links">
+                        <a href="privacy.html" class="about-link">
+                            <i class="fas fa-shield-alt"></i> Privacy Policy
+                        </a>
+                        <a href="https://github.com/culrizz/mockify" class="about-link" target="_blank">
+                            <i class="fab fa-github"></i> GitHub Repository
+                        </a>
+                        <a href="mailto:support@mockify.com" class="about-link">
+                            <i class="fas fa-envelope"></i> Contact Us
+                        </a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-main">
                 <div class="footer-brand">
-                    <div class="logo-icon small">M</div>
-                    <div>
-                        <h3>Mockify</h3>
-                        <p>Generate realistic fake data for testing & design</p>
+                    <div class="footer-logo">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>Mockify</span>
+                    </div>
+                    <p class="footer-tagline">Create realistic chat mockups in seconds.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-product-hunt"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4>Tools</h4>
-                        <a href="#">Chat Generators</a>
-                        <a href="#">Profile Maker</a>
-                        <a href="#">Document Creator</a>
-                        <a href="#">Data Generator</a>
+                        <h4>Product</h4>
+                        <ul>
+                            <li><a href="#features">Features</a></li>
+                            <li><a href="#pricing">Pricing</a></li>
+                            <li><a href="#templates">Templates</a></li>
+                            <li><a href="#generator">Generator</a></li>
+                            <li><a href="#">API Documentation</a></li>
+                        </ul>
                     </div>
                     <div class="footer-column">
-                        <h4>Resources</h4>
-                        <a href="#">Templates</a>
-                        <a href="#">API</a>
-                        <a href="#">Documentation</a>
-                        <a href="#">Blog</a>
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Partners</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="#">Help Center</a></li>
+                            <li><a href="#">Community</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Status</a></li>
+                            <li><a href="#">Report Abuse</a></li>
+                        </ul>
                     </div>
                     <div class="footer-column">
                         <h4>Legal</h4>
-                        <a href="#">Terms of Use</a>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Disclaimer</a>
-                        <a href="#">Acceptable Use</a>
+                        <ul>
+                            <li><a href="privacy.html">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                            <li><a href="#">GDPR</a></li>
+                            <li><a href="#">CCPA</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>© 2024 Mockify. All generated data is 100% fake. Use responsibly.</p>
-                <div class="footer-social">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-github"></i></a>
-                    <a href="#"><i class="fas fa-envelope"></i></a>
+                <p class="copyright">&copy; 2024 Mockify. All rights reserved. Created with <i class="fas fa-heart"></i> for the design community.</p>
+                <div class="footer-meta">
+                    <span>v1.0.0</span>
+                    <a href="sitemap.xml">Sitemap</a>
+                    <a href="robots.txt">Robots.txt</a>
                 </div>
             </div>
-        </footer>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <span id="toast-message">Message copied to clipboard!</span>
+        <button id="toast-close">&times;</button>
     </div>
 
-    <!-- ===== ESSENTIAL SCRIPTS ===== -->
-    <!-- html2canvas library for screenshot functionality -->
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-    
-    <!-- Your main JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>

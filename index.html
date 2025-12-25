@@ -3,201 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fake Chat Generator | WhatsApp & Instagram</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Mockify | Fake Chat Generator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/chat--v1.png">
+    <meta name="theme-color" content="#7C3AED">
 </head>
 <body>
     <div class="container">
         <header>
             <div class="logo">
-                <i class="fas fa-comment-dots"></i>
-                <h1>Fake Chat Generator</h1>
+                <div class="logo-icon">M</div>
+                <div class="logo-text">
+                    <h1>Mockify</h1>
+                    <p class="tagline">Fake Data & Chat Generator</p>
+                </div>
             </div>
-            <p class="tagline">Create realistic chat screenshots for testing & mockups</p>
+            
+            <nav class="main-nav">
+                <a href="#" class="nav-link active"><i class="fas fa-comments"></i> Chats</a>
+                <a href="#" class="nav-link"><i class="fas fa-user"></i> Profiles</a>
+                <a href="#" class="nav-link"><i class="fas fa-envelope"></i> Emails</a>
+                <a href="#" class="nav-link"><i class="fas fa-file-alt"></i> Documents</a>
+                <a href="#" class="nav-link"><i class="fas fa-cog"></i> More</a>
+            </nav>
             
             <div class="disclaimer">
-                <i class="fas fa-exclamation-triangle"></i>
+                <i class="fas fa-shield-alt"></i>
                 <div>
-                    <strong>Educational Use Only</strong>
-                    <p>For testing, prototyping, and presentations. Do not misuse.</p>
+                    <strong>100% Fake Data</strong>
+                    <p>For testing, design mockups & prototyping only</p>
                 </div>
             </div>
         </header>
 
-        <nav class="platform-tabs">
-            <button class="tab-btn active" data-platform="whatsapp">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </button>
-            <button class="tab-btn" data-platform="instagram">
-                <i class="fab fa-instagram"></i> Instagram
-            </button>
-        </nav>
+        <div class="content-wrapper">
+            <aside class="sidebar">
+                <h3><i class="fas fa-bolt"></i> Quick Tools</h3>
+                <button class="sidebar-btn active" data-tool="whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </button>
+                <button class="sidebar-btn" data-tool="instagram">
+                    <i class="fab fa-instagram"></i> Instagram
+                </button>
+                <button class="sidebar-btn" data-tool="facebook">
+                    <i class="fab fa-facebook-messenger"></i> Messenger
+                </button>
+                <button class="sidebar-btn" data-tool="telegram">
+                    <i class="fab fa-telegram"></i> Telegram
+                </button>
+                <button class="sidebar-btn" data-tool="sms">
+                    <i class="fas fa-sms"></i> SMS
+                </button>
+                
+                <div class="sidebar-divider"></div>
+                
+                <h3><i class="fas fa-magic"></i> Quick Actions</h3>
+                <button class="sidebar-btn" id="quick-random">
+                    <i class="fas fa-random"></i> Random Chat
+                </button>
+                <button class="sidebar-btn" id="quick-screenshot">
+                    <i class="fas fa-camera"></i> Take Screenshot
+                </button>
+                <button class="sidebar-btn" id="quick-template">
+                    <i class="fas fa-layer-group"></i> Use Template
+                </button>
+            </aside>
 
-        <main>
-            <!-- WhatsApp Generator -->
-            <section id="whatsapp-generator" class="generator-section active">
-                <div class="controls-panel">
-                    <h2><i class="fab fa-whatsapp"></i> WhatsApp Chat Settings</h2>
-                    
-                    <div class="form-group">
-                        <label for="wa-contact">
-                            <i class="fas fa-user-friends"></i> Contact Name
-                        </label>
-                        <input type="text" id="wa-contact" value="John Smith" placeholder="Contact name">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="wa-user">
-                            <i class="fas fa-user"></i> Your Name
-                        </label>
-                        <input type="text" id="wa-user" value="You" placeholder="Your name">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="wa-status">
-                            <i class="fas fa-circle"></i> Status
-                        </label>
-                        <input type="text" id="wa-status" value="Online" placeholder="Online/Last seen">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="wa-chat">
-                            <i class="fas fa-comments"></i> Conversation
-                            <span class="hint">Format: Name: Message</span>
-                        </label>
-                        <textarea id="wa-chat" rows="8">
-John Smith: Hey! Are you free tomorrow?
-You: Yes, I should be. What's up?
-John Smith: Want to grab lunch? There's a new place downtown
-You: Sounds good! What time?
-John Smith: How about 1 PM?
-You: Perfect! See you then
-John Smith: Great! I'll send you the location
-You: Thanks! Looking forward to it
-John Smith: 😊👍
-                        </textarea>
-                    </div>
-                    
-                    <div class="button-group">
-                        <button class="btn btn-secondary" id="wa-random">
-                            <i class="fas fa-random"></i> Random Chat
+            <main class="main-content">
+                <div class="tool-header">
+                    <h2><i class="fab fa-whatsapp"></i> WhatsApp Chat Generator</h2>
+                    <div class="tool-actions">
+                        <button class="btn btn-outline" id="save-template">
+                            <i class="fas fa-save"></i> Save
                         </button>
-                        <button class="btn btn-primary" id="wa-generate">
-                            <i class="fas fa-sync"></i> Update Preview
+                        <button class="btn btn-outline" id="share-chat">
+                            <i class="fas fa-share"></i> Share
                         </button>
-                        <button class="btn btn-success" id="wa-download">
-                            <i class="fas fa-download"></i> Download Screenshot
+                        <button class="btn btn-primary" id="export-all">
+                            <i class="fas fa-file-export"></i> Export
                         </button>
                     </div>
                 </div>
-                
-                <div class="preview-panel">
-                    <div class="preview-header">
-                        <h3><i class="fas fa-eye"></i> Live Preview</h3>
-                        <div class="preview-actions">
-                            <button class="btn-sm" id="wa-refresh">
-                                <i class="fas fa-redo"></i> Refresh
-                            </button>
+
+                <div class="generator-area">
+                    <div class="controls-section">
+                        <div class="control-group">
+                            <h3><i class="fas fa-sliders-h"></i> Chat Settings</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contact-name">
+                                        <i class="fas fa-user-friends"></i> Contact
+                                    </label>
+                                    <input type="text" id="contact-name" value="Alex Johnson" placeholder="Contact name">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="user-name">
+                                        <i class="fas fa-user"></i> Your Name
+                                    </label>
+                                    <input type="text" id="user-name" value="You" placeholder="Your name">
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="chat-status">
+                                        <i class="fas fa-circle"></i> Status
+                                    </label>
+                                    <select id="chat-status">
+                                        <option>Online</option>
+                                        <option>Last seen recently</option>
+                                        <option>Last seen today at 10:30 AM</option>
+                                        <option>Typing...</option>
+                                        <option>Recording...</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="chat-theme">
+                                        <i class="fas fa-palette"></i> Theme
+                                    </label>
+                                    <select id="chat-theme">
+                                        <option>Default</option>
+                                        <option>Dark</option>
+                                        <option>Blue</option>
+                                        <option>Pink</option>
+                                        <option>Custom</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="chat-conversation">
+                                    <i class="fas fa-comment-dots"></i> Conversation
+                                    <span class="hint">(Format: Name: Message)</span>
+                                </label>
+                                <div class="chat-editor">
+                                    <div class="editor-toolbar">
+                                        <button class="editor-btn"><i class="fas fa-bold"></i></button>
+                                        <button class="editor-btn"><i class="fas fa-italic"></i></button>
+                                        <button class="editor-btn"><i class="fas fa-smile"></i></button>
+                                        <button class="editor-btn"><i class="fas fa-image"></i></button>
+                                        <button class="editor-btn"><i class="fas fa-paperclip"></i></button>
+                                        <div class="editor-spacer"></div>
+                                        <button class="editor-btn" id="format-help">
+                                            <i class="fas fa-question-circle"></i> Format Help
+                                        </button>
+                                    </div>
+                                    <textarea id="chat-conversation" rows="10">
+Alex Johnson: Hey! Are we still meeting tomorrow?
+You: Yes, definitely! 2 PM at the coffee shop?
+Alex Johnson: Perfect! I'll be there
+You: Great! Don't forget the documents
+Alex Johnson: I have them ready
+You: Awesome! See you tomorrow then
+Alex Johnson: Looking forward to it! 😊
+You: Same here!
+Alex Johnson: 👍
+                                    </textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message-count">
+                                    <i class="fas fa-hashtag"></i> Message Count: <span id="count-display">8</span>
+                                </label>
+                                <input type="range" id="message-count" min="3" max="20" value="8">
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <button class="btn btn-secondary" id="btn-randomize">
+                                    <i class="fas fa-dice"></i> Randomize Chat
+                                </button>
+                                <button class="btn btn-primary" id="btn-preview">
+                                    <i class="fas fa-eye"></i> Update Preview
+                                </button>
+                                <button class="btn btn-success" id="btn-download">
+                                    <i class="fas fa-download"></i> Download PNG
+                                </button>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="chat-preview whatsapp-preview" id="whatsapp-preview">
-                        <!-- WhatsApp chat will be rendered here -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Instagram Generator -->
-            <section id="instagram-generator" class="generator-section">
-                <div class="controls-panel">
-                    <h2><i class="fab fa-instagram"></i> Instagram DM Settings</h2>
-                    
-                    <div class="form-group">
-                        <label for="ig-contact">
-                            <i class="fas fa-user-friends"></i> Contact Username
-                        </label>
-                        <input type="text" id="ig-contact" value="sarah.creative" placeholder="Username">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="ig-user">
-                            <i class="fas fa-user"></i> Your Username
-                        </label>
-                        <input type="text" id="ig-user" value="yourstyle" placeholder="Your username">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="ig-status">
-                            <i class="fas fa-clock"></i> Active Status
-                        </label>
-                        <input type="text" id="ig-status" value="Active 1h ago" placeholder="Active status">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="ig-chat">
-                            <i class="fas fa-comments"></i> Conversation
-                            <span class="hint">Format: username: Message</span>
-                        </label>
-                        <textarea id="ig-chat" rows="8">
-sarah.creative: Loved your latest post! ✨
-yourstyle: Thank you! Your photography is amazing
-sarah.creative: That means a lot coming from you!
-yourstyle: We should collaborate sometime
-sarah.creative: I'd love that! What do you have in mind?
-yourstyle: Maybe a photo shoot next weekend?
-sarah.creative: Perfect! I'm free Saturday
-yourstyle: Great! I'll send you the details
-sarah.creative: Can't wait! 😍📸
-                        </textarea>
-                    </div>
-                    
-                    <div class="button-group">
-                        <button class="btn btn-secondary" id="ig-random">
-                            <i class="fas fa-random"></i> Random Chat
-                        </button>
-                        <button class="btn btn-primary" id="ig-generate">
-                            <i class="fas fa-sync"></i> Update Preview
-                        </button>
-                        <button class="btn btn-success" id="ig-download">
-                            <i class="fas fa-download"></i> Download Screenshot
-                        </button>
+                    <div class="preview-section">
+                        <div class="preview-header">
+                            <h3><i class="fas fa-mobile-alt"></i> Live Preview</h3>
+                            <div class="preview-controls">
+                                <button class="preview-btn active" data-view="mobile">
+                                    <i class="fas fa-mobile-alt"></i> Mobile
+                                </button>
+                                <button class="preview-btn" data-view="desktop">
+                                    <i class="fas fa-desktop"></i> Desktop
+                                </button>
+                                <button class="preview-btn" id="btn-refresh">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="device-mockup">
+                            <div class="device-frame">
+                                <div class="device-screen" id="chat-preview">
+                                    <!-- Chat will be rendered here by JavaScript -->
+                                </div>
+                            </div>
+                            
+                            <div class="device-actions">
+                                <button class="device-btn" id="btn-screenshot">
+                                    <i class="fas fa-camera"></i> Screenshot
+                                </button>
+                                <button class="device-btn" id="btn-copy">
+                                    <i class="fas fa-copy"></i> Copy Text
+                                </button>
+                                <button class="device-btn" id="btn-share">
+                                    <i class="fas fa-share-alt"></i> Share
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="preview-stats">
+                            <div class="stat">
+                                <i class="fas fa-comment"></i>
+                                <span>Messages: <strong>8</strong></span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-clock"></i>
+                                <span>Time Span: <strong>15 min</strong></span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-user-friends"></i>
+                                <span>Participants: <strong>2</strong></span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-file-image"></i>
+                                <span>Image Ready</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="preview-panel">
-                    <div class="preview-header">
-                        <h3><i class="fas fa-eye"></i> Live Preview</h3>
-                        <div class="preview-actions">
-                            <button class="btn-sm" id="ig-refresh">
-                                <i class="fas fa-redo"></i> Refresh
-                            </button>
+                <div class="templates-section">
+                    <h3><i class="fas fa-th-large"></i> Quick Templates</h3>
+                    <div class="templates-grid">
+                        <div class="template-card" data-template="business">
+                            <div class="template-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <h4>Business Meeting</h4>
+                            <p>Professional conversation</p>
+                        </div>
+                        <div class="template-card" data-template="friends">
+                            <div class="template-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Friends Chat</h4>
+                            <p>Casual conversation</p>
+                        </div>
+                        <div class="template-card" data-template="family">
+                            <div class="template-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <h4>Family Group</h4>
+                            <p>Family chat template</p>
+                        </div>
+                        <div class="template-card" data-template="support">
+                            <div class="template-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h4>Customer Support</h4>
+                            <p>Support conversation</p>
                         </div>
                     </div>
-                    
-                    <div class="chat-preview instagram-preview" id="instagram-preview">
-                        <!-- Instagram chat will be rendered here -->
-                    </div>
                 </div>
-            </section>
-        </main>
+            </main>
+        </div>
 
         <footer>
             <div class="footer-content">
-                <p>© 2024 Fake Chat Generator | For legitimate testing purposes only</p>
-                <p class="footer-note">
-                    <i class="fas fa-info-circle"></i>
-                    This tool generates fake data. Never use for deception or fraud.
-                </p>
+                <div class="footer-brand">
+                    <div class="logo-icon small">M</div>
+                    <div>
+                        <h3>Mockify</h3>
+                        <p>Generate realistic fake data for testing & design</p>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Tools</h4>
+                        <a href="#">Chat Generators</a>
+                        <a href="#">Profile Maker</a>
+                        <a href="#">Document Creator</a>
+                        <a href="#">Data Generator</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Resources</h4>
+                        <a href="#">Templates</a>
+                        <a href="#">API</a>
+                        <a href="#">Documentation</a>
+                        <a href="#">Blog</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Legal</h4>
+                        <a href="#">Terms of Use</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Disclaimer</a>
+                        <a href="#">Acceptable Use</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 Mockify. All generated data is 100% fake. Use responsibly.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fas fa-envelope"></i></a>
+                </div>
             </div>
         </footer>
     </div>
 
-    <!-- External Libraries -->
+    <!-- ===== ESSENTIAL SCRIPTS ===== -->
+    <!-- html2canvas library for screenshot functionality -->
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@faker-js/faker@7.6.0/dist/faker.min.js"></script>
     
-    <!-- Our Script -->
+    <!-- Your main JavaScript file -->
     <script src="script.js"></script>
 </body>
 </html>

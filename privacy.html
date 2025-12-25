@@ -61,11 +61,11 @@
         }
         
         .highlight-box {
-            background-color: #f0f9ff;
+            background-color: rgba(99, 102, 241, 0.1);
             border-left: 4px solid var(--primary);
             padding: 1.5rem;
             margin: 1.5rem 0;
-            border-radius: 0 8px 8px 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
         }
         
         .privacy-footer {
@@ -85,11 +85,13 @@
 <body>
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">
-                <i class="fas fa-comment-dots"></i>
-                <span class="logo-text">Mockify</span>
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-comment-dots"></i>
+                </div>
+                <span class="logo-text">MOCKIFY</span>
             </a>
-            <a href="index.html" class="btn-secondary">
+            <a href="index.html" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back to App
             </a>
         </div>
@@ -223,5 +225,7 @@
             <p>&copy; 2024 Mockify. All rights reserved.</p>
         </div>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>

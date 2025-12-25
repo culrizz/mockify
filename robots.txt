@@ -2,10 +2,11 @@
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /api/
 Disallow: /private/
 
 # Sitemap
-Sitemap: https://mockify.yourdomain.com/sitemap.xml
+Sitemap: https://mockify.com/sitemap.xml
 
 # Crawl delay
 Crawl-delay: 2
@@ -19,3 +20,9 @@ Disallow: /
 
 User-agent: CCBot
 Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Crawl-delay: 10

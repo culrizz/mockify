@@ -1,1 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Mockify</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .error-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .error-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .error-code {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .error-code span {
+            font-size: 8rem;
+            font-weight: 900;
+            color: var(--primary);
+            text-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+        }
+        
+        .error-icon {
+            font-size: 5rem;
+            color: var(--accent);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .error-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .error-message {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .error-suggestions {
+            max-width: 900px;
+            margin-top: 4rem;
+        }
+        
+        .suggestion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .suggestion-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .suggestion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .suggestion-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .error-footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--dark);
+            color: var(--light);
+        }
+        
+        @media (max-width: 768px) {
+            .error-code span {
+                font-size: 5rem;
+            }
+            
+            .error-icon {
+                font-size: 3rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .suggestion-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-comment-dots"></i>
+                </div>
+                <span class="logo-text">MOCKIFY</span>
+            </a>
+            <a href="index.html" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+        </div>
+    </nav>
 
+    <main class="error-container">
+        <div class="error-content">
+            <div class="error-code">
+                <span>4</span>
+                <div class="error-icon">
+                    <i class="fas fa-comment-slash"></i>
+                </div>
+                <span>4</span>
+            </div>
+            
+            <h1 class="error-title">Chat Not Found</h1>
+            
+            <p class="error-message">
+                Oops! It looks like this conversation doesn't exist. 
+                The mockup you're looking for might have been deleted or never created.
+            </p>
+            
+            <div class="error-actions">
+                <a href="index.html" class="btn btn-primary btn-large">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <a href="generator.html?app=whatsapp" class="btn btn-outline btn-large">
+                    <i class="fas fa-plus"></i> Create New Mockup
+                </a>
+            </div>
+            
+            <div class="error-suggestions">
+                <h3>While you're here, why not...</h3>
+                <div class="suggestion-grid">
+                    <div class="suggestion-card">
+                        <i class="fas fa-bolt"></i>
+                        <h4>Generate a Random Chat</h4>
+                        <p>Create a funny random conversation in seconds</p>
+                    </div>
+                    <div class="suggestion-card">
+                        <i class="fas fa-palette"></i>
+                        <h4>Explore Templates</h4>
+                        <p>Browse our collection of pre-made templates</p>
+                    </div>
+                    <div class="suggestion-card">
+                        <i class="fas fa-star"></i>
+                        <h4>Check Out Features</h4>
+                        <p>See what makes Mockify special</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="error-footer">
+            <p>&copy; 2024 Mockify. This is a 404 error page. <a href="index.html" style="color: var(--primary);">Return to safety</a></p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

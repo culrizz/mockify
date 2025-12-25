@@ -3,503 +3,1632 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mockify - Chat & Social Media Mockup Generator</title>
+    <title>Mockify - Social Media Mockup Generator</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <meta name="description" content="Generate realistic chat and social media mockups for design, entertainment, and prototyping.">
+    <style>
+        /* MOCKIFY BRANDING & LOGO */
+        :root {
+            --mockify-primary: #6366f1;
+            --mockify-secondary: #8b5cf6;
+            --mockify-accent: #ec4899;
+            --mockify-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--mockify-gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            top: 5px;
+            left: 5px;
+        }
+        
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            bottom: 5px;
+            right: 5px;
+        }
+        
+        .logo-text {
+            background: var(--mockify-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        
+        /* DEVICE FRAMES */
+        .device-frame {
+            position: relative;
+            margin: 20px auto;
+            background: #000;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .iphone-frame {
+            width: 390px;
+            height: 844px;
+            border: 12px solid #1d1d1f;
+            border-radius: 46px;
+        }
+        
+        .samsung-frame {
+            width: 410px;
+            height: 880px;
+            border: 8px solid #1d1d1f;
+            border-radius: 40px;
+        }
+        
+        .desktop-frame {
+            width: 800px;
+            height: 600px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            background: #fff;
+        }
+        
+        .tablet-frame {
+            width: 600px;
+            height: 800px;
+            border: 10px solid #1d1d1f;
+            border-radius: 24px;
+        }
+        
+        .device-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 160px;
+            height: 32px;
+            background: #000;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+        
+        .samsung-notch {
+            width: 120px;
+            height: 26px;
+            border-radius: 0 0 12px 12px;
+        }
+        
+        .device-screen {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* SOCIAL MEDIA GENERATOR STYLES */
+        .generator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .app-generator {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .app-generator:hover {
+            transform: translateY(-5px);
+        }
+        
+        .app-header {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .app-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .whatsapp-icon { background: #25D366; }
+        .facebook-icon { background: #1877F2; }
+        .instagram-icon { background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D); }
+        .twitter-icon { background: #000000; }
+        .tiktok-icon { background: #000000; }
+        .youtube-icon { background: #FF0000; }
+        .hangouts-icon { background: #0C9D58; }
+        .imessage-icon { background: #007AFF; }
+        .android-message-icon { background: #1A73E8; }
+        .telegram-icon { background: #0088CC; }
+        .snapchat-icon { background: #FFFC00; color: #000; }
+        .linkedin-icon { background: #0077B5; }
+        
+        .app-controls {
+            padding: 20px;
+            background: #f8fafc;
+        }
+        
+        .control-group {
+            margin-bottom: 15px;
+        }
+        
+        .control-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #475569;
+            font-size: 14px;
+        }
+        
+        .control-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        
+        .preview-area {
+            padding: 20px;
+            background: #f1f5f9;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .action-buttons {
+            padding: 20px;
+            display: flex;
+            gap: 10px;
+            border-top: 1px solid #f1f5f9;
+        }
+        
+        .btn-generate, .btn-download {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-generate {
+            background: var(--mockify-gradient);
+            color: white;
+        }
+        
+        .btn-download {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-generate:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-download:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+        
+        /* SPECIFIC APP STYLES */
+        .whatsapp-chat {
+            background: #e5ddd5;
+            height: 100%;
+            position: relative;
+        }
+        
+        .whatsapp-header {
+            background: #075e54;
+            color: white;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .whatsapp-message {
+            max-width: 70%;
+            padding: 8px 12px;
+            border-radius: 8px;
+            margin: 10px;
+            font-size: 14px;
+            position: relative;
+        }
+        
+        .whatsapp-sent {
+            background: #dcf8c6;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        .whatsapp-received {
+            background: white;
+            align-self: flex-start;
+        }
+        
+        .instagram-post {
+            background: white;
+            max-width: 400px;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+        }
+        
+        .instagram-header {
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 1px solid #dbdbdb;
+        }
+        
+        .instagram-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #405DE6, #E1306C);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .instagram-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .instagram-actions {
+            padding: 12px;
+            display: flex;
+            gap: 15px;
+            font-size: 24px;
+            color: #262626;
+        }
+        
+        .instagram-likes {
+            padding: 0 12px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .instagram-caption {
+            padding: 12px;
+            font-size: 14px;
+        }
+        
+        /* Twitter/X Styles */
+        .tweet {
+            background: white;
+            max-width: 500px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .tweet-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .tweet-content {
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        
+        .tweet-actions {
+            display: flex;
+            justify-content: space-around;
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        /* TikTok Styles */
+        .tiktok-video {
+            width: 100%;
+            height: 600px;
+            background: #000;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tiktok-video::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(transparent 60%, rgba(0,0,0,0.8));
+        }
+        
+        .tiktok-ui {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            z-index: 2;
+        }
+        
+        /* YouTube Styles */
+        .youtube-video {
+            background: #000;
+            width: 100%;
+            height: 300px;
+            position: relative;
+        }
+        
+        .youtube-player {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 48px;
+        }
+        
+        .youtube-info {
+            padding: 16px;
+            background: white;
+        }
+        
+        /* iMessage Styles */
+        .imessage-container {
+            background: #f6f6f6;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 10px;
+        }
+        
+        .imessage-bubble {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            margin: 5px 10px;
+            font-size: 16px;
+            position: relative;
+        }
+        
+        .imessage-sent {
+            background: #007aff;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .imessage-received {
+            background: #e5e5ea;
+            color: black;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .generator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .iphone-frame, .samsung-frame {
+                width: 320px;
+                height: 692px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- NAVIGATION -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-comment-dots"></i>
-                <span class="logo-text">Mockify</span>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-comment-dots"></i>
+                </div>
+                <div class="logo-text">MOCKIFY</div>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#generator">Generator</a></li>
-                <li><a href="#templates">Templates</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#about">About</a></li>
-            </ul>
-            <div class="nav-buttons">
-                <button class="btn-login">Log In</button>
-                <button class="btn-signup">Sign Up Free</button>
+            <div class="nav-menu">
+                <a href="#generators" class="active">Generators</a>
+                <a href="#devices">Devices</a>
+                <a href="#export">Export</a>
+                <a href="#templates">Templates</a>
             </div>
-            <button class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div class="nav-actions">
+                <button class="btn-login">Sign In</button>
+                <button class="btn-primary">Get Pro</button>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-text">
-                <h1 class="hero-title">Create Realistic Chat & Social Media <span class="highlight">Mockups</span></h1>
-                <p class="hero-subtitle">Design, prototype, or have fun with customizable mock conversations. Perfect for UI/UX designers, content creators, and developers.</p>
-                <div class="hero-buttons">
-                    <button class="btn-primary" id="start-generating">
-                        <i class="fas fa-bolt"></i> Start Generating
-                    </button>
-                    <button class="btn-secondary">
-                        <i class="fas fa-play-circle"></i> Watch Demo
-                    </button>
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Create Realistic Social Media Mockups</h1>
+            <p>Generate fake screenshots that look exactly like real apps. Perfect for design, content creation, and prototyping.</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Platforms</span>
                 </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">10,000+</span>
-                        <span class="stat-label">Mockups Created</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">2,500+</span>
-                        <span class="stat-label">Happy Users</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">50+</span>
-                        <span class="stat-label">Templates</span>
-                    </div>
+                <div class="stat">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Customizations</span>
                 </div>
-            </div>
-            <div class="hero-preview">
-                <div class="mockup-container">
-                    <div class="mockup-phone">
-                        <div class="phone-screen">
-                            <div class="chat-header">
-                                <div class="chat-contact">
-                                    <div class="avatar">
-                                        <i class="fas fa-user-circle"></i>
-                                    </div>
-                                    <div class="contact-info">
-                                        <h4>Alex Morgan</h4>
-                                        <p>Online now</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-messages" id="demo-chat">
-                                <!-- Messages will be generated by JS -->
-                            </div>
-                            <div class="chat-input">
-                                <input type="text" placeholder="Type a message..." disabled>
-                                <button disabled><i class="fas fa-paper-plane"></i></button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="stat">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Devices</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Generator Section -->
-    <section id="generator" class="generator-section">
-        <div class="section-container">
-            <h2 class="section-title">Custom Mockup Generator</h2>
-            <p class="section-subtitle">Create your own custom chat or social media mockup in seconds</p>
-            
-            <div class="generator-container">
-                <div class="config-panel">
-                    <div class="config-group">
-                        <h3><i class="fas fa-cog"></i> Platform</h3>
-                        <div class="platform-options">
-                            <div class="platform-option active" data-platform="whatsapp">
-                                <i class="fab fa-whatsapp"></i>
-                                <span>WhatsApp</span>
-                            </div>
-                            <div class="platform-option" data-platform="imessage">
-                                <i class="fas fa-message"></i>
-                                <span>iMessage</span>
-                            </div>
-                            <div class="platform-option" data-platform="instagram">
-                                <i class="fab fa-instagram"></i>
-                                <span>Instagram</span>
-                            </div>
-                            <div class="platform-option" data-platform="twitter">
-                                <i class="fab fa-twitter"></i>
-                                <span>Twitter</span>
-                            </div>
-                            <div class="platform-option" data-platform="facebook">
-                                <i class="fab fa-facebook-messenger"></i>
-                                <span>Messenger</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="config-group">
-                        <h3><i class="fas fa-user-friends"></i> Participants</h3>
-                        <div class="participant-controls">
-                            <div class="participant">
-                                <div class="avatar small">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <input type="text" class="name-input" value="You" placeholder="Name">
-                                <select class="color-select">
-                                    <option value="#3b82f6">Blue</option>
-                                    <option value="#10b981">Green</option>
-                                    <option value="#f59e0b">Orange</option>
-                                    <option value="#ef4444">Red</option>
-                                </select>
-                            </div>
-                            <div class="participant">
-                                <div class="avatar small">
-                                    <i class="fas fa-user"></i>
-                                </div>
-                                <input type="text" class="name-input" value="Friend" placeholder="Name">
-                                <select class="color-select">
-                                    <option value="#10b981">Green</option>
-                                    <option value="#3b82f6">Blue</option>
-                                    <option value="#f59e0b">Orange</option>
-                                    <option value="#ef4444">Red</option>
-                                </select>
-                            </div>
-                            <button class="btn-add-participant">
-                                <i class="fas fa-plus"></i> Add Person
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="config-group">
-                        <h3><i class="fas fa-comment-alt"></i> Messages</h3>
-                        <div class="message-controls">
-                            <div class="message-input-group">
-                                <input type="text" id="new-message" placeholder="Type a message...">
-                                <select id="message-sender">
-                                    <option value="0">You</option>
-                                    <option value="1">Friend</option>
-                                </select>
-                                <button id="add-message">
-                                    <i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                            <div class="message-list" id="message-list">
-                                <!-- Messages will be added here -->
-                            </div>
-                            <button class="btn-generate-random">
-                                <i class="fas fa-dice"></i> Generate Random Chat
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="config-group">
-                        <h3><i class="fas fa-magic"></i> Customize</h3>
-                        <div class="customize-controls">
-                            <label>
-                                <input type="checkbox" id="show-time" checked> Show timestamps
-                            </label>
-                            <label>
-                                <input type="checkbox" id="show-status" checked> Show online status
-                            </label>
-                            <label>
-                                <input type="checkbox" id="show-avatars" checked> Show profile pictures
-                            </label>
-                            <div class="theme-select">
-                                <label>Theme:</label>
-                                <select id="theme-select">
-                                    <option value="light">Light</option>
-                                    <option value="dark">Dark</option>
-                                    <option value="auto">Auto</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="preview-panel">
-                    <div class="preview-header">
-                        <h3>Live Preview</h3>
-                        <div class="preview-actions">
-                            <button class="btn-action" id="download-png">
-                                <i class="fas fa-download"></i> PNG
-                            </button>
-                            <button class="btn-action" id="copy-html">
-                                <i class="fas fa-code"></i> HTML
-                            </button>
-                            <button class="btn-action" id="share-link">
-                                <i class="fas fa-share"></i> Share
-                            </button>
-                        </div>
-                    </div>
-                    <div class="preview-content" id="live-preview">
-                        <!-- Live preview will be rendered here -->
-                    </div>
+    <!-- DEVICE SELECTOR -->
+    <section id="devices" class="section">
+        <h2 class="section-title">Choose Your Device</h2>
+        <div class="device-selector">
+            <div class="device-option active" data-device="iphone">
+                <i class="fab fa-apple"></i>
+                <span>iPhone 17 Pro Max</span>
+            </div>
+            <div class="device-option" data-device="samsung">
+                <i class="fab fa-android"></i>
+                <span>Samsung S24 Ultra</span>
+            </div>
+            <div class="device-option" data-device="desktop">
+                <i class="fas fa-desktop"></i>
+                <span>Desktop</span>
+            </div>
+            <div class="device-option" data-device="tablet">
+                <i class="fas fa-tablet-alt"></i>
+                <span>Tablet</span>
+            </div>
+        </div>
+        
+        <!-- Device Frame Preview -->
+        <div class="device-preview">
+            <div class="iphone-frame device-frame active">
+                <div class="device-notch"></div>
+                <div class="device-screen" id="preview-screen">
+                    <!-- Preview content will be inserted here -->
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Templates Section -->
-    <section id="templates" class="templates-section">
-        <div class="section-container">
-            <h2 class="section-title">Ready-to-Use Templates</h2>
-            <p class="section-subtitle">Choose from our collection of pre-made templates for various scenarios</p>
-            
-            <div class="template-filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="funny">Funny</button>
-                <button class="filter-btn" data-filter="business">Business</button>
-                <button class="filter-btn" data-filter="dating">Dating</button>
-                <button class="filter-btn" data-filter="drama">Drama</button>
-                <button class="filter-btn" data-filter="social">Social Media</button>
-            </div>
-            
-            <div class="templates-grid">
-                <!-- Templates will be loaded via JS -->
-            </div>
-            
-            <div class="section-footer">
-                <button class="btn-secondary" id="load-more-templates">
-                    <i class="fas fa-sync-alt"></i> Load More Templates
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section id="features" class="features-section">
-        <div class="section-container">
-            <h2 class="section-title">Why Choose Mockify?</h2>
-            <p class="section-subtitle">Powerful features for designers, developers, and content creators</p>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bolt"></i>
+    <!-- GENERATORS GRID -->
+    <section id="generators" class="section">
+        <h2 class="section-title">Social Media Generators</h2>
+        <p class="section-subtitle">Click any generator to start creating fake screenshots</p>
+        
+        <div class="generator-grid">
+            <!-- WHATSAPP -->
+            <div class="app-generator" data-app="whatsapp">
+                <div class="app-header">
+                    <div class="app-icon whatsapp-icon">
+                        <i class="fab fa-whatsapp"></i>
                     </div>
-                    <h3>Lightning Fast</h3>
-                    <p>Generate mockups in seconds with our intuitive interface and powerful engine.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-palette"></i>
+                    <div>
+                        <h3>WhatsApp</h3>
+                        <p>Chat, Chat List, Calls</p>
                     </div>
-                    <h3>Fully Customizable</h3>
-                    <p>Change colors, names, messages, timestamps, and platform styles to match your needs.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-download"></i>
+                <div class="app-controls">
+                    <div class="control-group">
+                        <label class="control-label">Contact Name</label>
+                        <input type="text" class="control-input" data-field="contact-name" value="Alex Morgan">
                     </div>
-                    <h3>Multiple Export Options</h3>
-                    <p>Download as PNG, JPG, SVG, or copy HTML/CSS code for your projects.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-shield-alt"></i>
+                    <div class="control-group">
+                        <label class="control-label">Message</label>
+                        <textarea class="control-input" data-field="message" rows="2">Hey! Did you see the new Mockify tool?</textarea>
                     </div>
-                    <h3>Privacy First</h3>
-                    <p>All data stays in your browser. We don't store your conversations or personal information.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-code"></i>
+                    <div class="control-group">
+                        <label class="control-label">Type</label>
+                        <select class="control-input" data-field="type">
+                            <option value="chat">Chat</option>
+                            <option value="chat-list">Chat List</option>
+                            <option value="call">Call Screen</option>
+                        </select>
                     </div>
-                    <h3>Developer Friendly</h3>
-                    <p>API access, webhooks, and embed options for developers and teams.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-infinity"></i>
-                    </div>
-                    <h3>Unlimited Generations</h3>
-                    <p>Free plan includes unlimited mockup generations with watermarks.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing-section">
-        <div class="section-container">
-            <h2 class="section-title">Simple, Transparent Pricing</h2>
-            <p class="section-subtitle">Choose the plan that's right for you</p>
-            
-            <div class="pricing-toggle">
-                <span>Monthly</span>
-                <label class="switch">
-                    <input type="checkbox" id="pricing-toggle">
-                    <span class="slider"></span>
-                </label>
-                <span>Yearly <span class="discount-badge">Save 20%</span></span>
-            </div>
-            
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Free</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">0</span>
-                            <span class="period">/forever</span>
+                <div class="preview-area">
+                    <div class="whatsapp-chat">
+                        <div class="whatsapp-header">
+                            <div class="whatsapp-avatar">A</div>
+                            <div>
+                                <div class="whatsapp-name">Alex Morgan</div>
+                                <div class="whatsapp-status">online</div>
+                            </div>
+                        </div>
+                        <div class="whatsapp-messages">
+                            <div class="whatsapp-message whatsapp-received">Hey! Did you see the new Mockify tool?</div>
+                            <div class="whatsapp-message whatsapp-sent">Yes! It's amazing for creating fake screenshots</div>
                         </div>
                     </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Unlimited mockup generations</li>
-                        <li><i class="fas fa-check"></i> Basic templates</li>
-                        <li><i class="fas fa-check"></i> Watermarked exports</li>
-                        <li><i class="fas fa-check"></i> PNG & JPG downloads</li>
-                        <li><i class="fas fa-times"></i> No API access</li>
-                        <li><i class="fas fa-times"></i> No priority support</li>
-                    </ul>
-                    <button class="btn-pricing">Get Started Free</button>
                 </div>
-                
-                <div class="pricing-card popular">
-                    <div class="popular-badge">Most Popular</div>
-                    <div class="pricing-header">
-                        <h3>Pro</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount" data-monthly="9" data-yearly="7">9</span>
-                            <span class="period">/month</span>
+                <div class="action-buttons">
+                    <button class="btn-generate" data-app="whatsapp">Generate</button>
+                    <button class="btn-download" data-app="whatsapp">Download</button>
+                </div>
+            </div>
+
+            <!-- INSTAGRAM -->
+            <div class="app-generator" data-app="instagram">
+                <div class="app-header">
+                    <div class="app-icon instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div>
+                        <h3>Instagram</h3>
+                        <p>Posts, Stories, Reels, Chat</p>
+                    </div>
+                </div>
+                <div class="app-controls">
+                    <div class="control-group">
+                        <label class="control-label">Username</label>
+                        <input type="text" class="control-input" data-field="username" value="@designer_life">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Caption</label>
+                        <textarea class="control-input" data-field="caption" rows="2">Just created this amazing mockup using Mockify! #design</textarea>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Type</label>
+                        <select class="control-input" data-field="type">
+                            <option value="post">Post</option>
+                            <option value="story">Story</option>
+                            <option value="reel">Reel</option>
+                            <option value="chat">Chat</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="preview-area">
+                    <div class="instagram-post">
+                        <div class="instagram-header">
+                            <div class="instagram-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <div class="instagram-username">@designer_life</div>
+                                <div class="instagram-location">New York, NY</div>
+                            </div>
+                        </div>
+                        <div class="instagram-image">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="instagram-actions">
+                            <i class="far fa-heart"></i>
+                            <i class="far fa-comment"></i>
+                            <i class="far fa-paper-plane"></i>
+                            <i class="far fa-bookmark" style="margin-left: auto;"></i>
+                        </div>
+                        <div class="instagram-likes">2,543 likes</div>
+                        <div class="instagram-caption">
+                            <strong>@designer_life</strong> Just created this amazing mockup using Mockify! #design #mockup #ui
                         </div>
                     </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Everything in Free</li>
-                        <li><i class="fas fa-check"></i> No watermarks</li>
-                        <li><i class="fas fa-check"></i> All templates unlocked</li>
-                        <li><i class="fas fa-check"></i> SVG & HTML/CSS exports</li>
-                        <li><i class="fas fa-check"></i> Basic API access</li>
-                        <li><i class="fas fa-check"></i> Email support</li>
-                    </ul>
-                    <button class="btn-pricing primary">Upgrade to Pro</button>
                 </div>
-                
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <h3>Team</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount" data-monthly="29" data-yearly="23">29</span>
-                            <span class="period">/month</span>
+                <div class="action-buttons">
+                    <button class="btn-generate" data-app="instagram">Generate</button>
+                    <button class="btn-download" data-app="instagram">Download</button>
+                </div>
+            </div>
+
+            <!-- FACEBOOK -->
+            <div class="app-generator" data-app="facebook">
+                <div class="app-header">
+                    <div class="app-icon facebook-icon">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <div>
+                        <h3>Facebook</h3>
+                        <p>Posts, Chat, Messenger</p>
+                    </div>
+                </div>
+                <div class="app-controls">
+                    <div class="control-group">
+                        <label class="control-label">User Name</label>
+                        <input type="text" class="control-input" data-field="username" value="John Smith">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Post Content</label>
+                        <textarea class="control-input" data-field="content" rows="2">Excited to share my latest design project!</textarea>
+                    </div>
+                </div>
+                <div class="preview-area">
+                    <div class="facebook-post">
+                        <div class="facebook-header">
+                            <div class="facebook-avatar">JS</div>
+                            <div>
+                                <div class="facebook-name">John Smith</div>
+                                <div class="facebook-time">2 hrs · <i class="fas fa-globe"></i></div>
+                            </div>
+                        </div>
+                        <div class="facebook-content">
+                            Excited to share my latest design project! Created using Mockify for realistic social media previews.
+                        </div>
+                        <div class="facebook-actions">
+                            <div class="facebook-action">Like</div>
+                            <div class="facebook-action">Comment</div>
+                            <div class="facebook-action">Share</div>
                         </div>
                     </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Everything in Pro</li>
-                        <li><i class="fas fa-check"></i> Team collaboration</li>
-                        <li><i class="fas fa-check"></i> Custom branding</li>
-                        <li><i class="fas fa-check"></i> Advanced API</li>
-                        <li><i class="fas fa-check"></i> Priority support</li>
-                        <li><i class="fas fa-check"></i> Analytics dashboard</li>
-                    </ul>
-                    <button class="btn-pricing">Contact Sales</button>
                 </div>
+                <div class="action-buttons">
+                    <button class="btn-generate" data-app="facebook">Generate</button>
+                    <button class="btn-download" data-app="facebook">Download</button>
+                </div>
+            </div>
+
+            <!-- X (TWITTER) -->
+            <div class="app-generator" data-app="twitter">
+                <div class="app-header">
+                    <div class="app-icon twitter-icon">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div>
+                        <h3>X (Twitter)</h3>
+                        <p>Tweets, Chat, Profile</p>
+                    </div>
+                </div>
+                <div class="app-controls">
+                    <div class="control-group">
+                        <label class="control-label">Handle</label>
+                        <input type="text" class="control-input" data-field="handle" value="@techdesigner">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Tweet</label>
+                        <textarea class="control-input" data-field="tweet" rows="2">Just discovered @mockifyapp - amazing tool for creating realistic social media mockups! #design #ui</textarea>
+                    </div>
+                </div>
+                <div class="preview-area">
+                    <div class="tweet">
+                        <div class="tweet-header">
+                            <div class="tweet-avatar">TD</div>
+                            <div>
+                                <div class="tweet-name">Tech Designer</div>
+                                <div class="tweet-handle">@techdesigner · 2h</div>
+                            </div>
+                            <i class="fab fa-twitter" style="margin-left: auto; color: #1DA1F2;"></i>
+                        </div>
+                        <div class="tweet-content">
+                            Just discovered @mockifyapp - amazing tool for creating realistic social media mockups! #design #ui
+                        </div>
+                        <div class="tweet-actions">
+                            <div class="tweet-action"><i class="far fa-comment"></i> 24</div>
+                            <div class="tweet-action"><i class="fas fa-retweet"></i> 8</div>
+                            <div class="tweet-action"><i class="far fa-heart"></i> 142</div>
+                            <div class="tweet-action"><i class="far fa-share-square"></i></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-generate" data-app="twitter">Generate</button>
+                    <button class="btn-download" data-app="twitter">Download</button>
+                </div>
+            </div>
+
+            <!-- TIKTOK -->
+            <div class="app-generator" data-app="tiktok">
+                <div class="app-header">
+                    <div class="app-icon tiktok-icon">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <div>
+                        <h3>TikTok</h3>
+                        <p>Videos, Profile</p>
+                    </div>
+                </div>
+                <div class="app-controls">
+                    <div class="control-group">
+                        <label class="control-label">Username</label>
+                        <input type="text" class="control-input" data-field="username" value="@creatortok">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Caption</label>
+                        <textarea class="control-input" data-field="caption" rows="2">How to create realistic mockups #design #mockup #tutorial</textarea>
+                    </div>
+                </div>
+                <div class="preview-area">
+                    <div class="tiktok-video">
+                        <div class="tiktok-ui">
+                            <div class="tiktok-username">@creatortok</div>
+                            <div class="tiktok-caption">How to create realistic mockups #design #mockup #tutorial</div>
+                            <div class="tiktok-stats">
+                                <div><i class="fas fa-heart"></i> 24.5K</div>
+                                <div><i class="fas fa-comment"></i> 1.2K</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-generate" data-app="tiktok">Generate</button>
+                    <button class="btn-download" data-app="tiktok">Download</button>
+                </div>
+            </div>
+
+            <!-- YOUTUBE -->
+            <div class="app-generator" data-app="youtube">
+                <div class="app-header">
+                    <div class="app-icon youtube-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div>
+                        <h3>YouTube</h3>
+                        <p>Videos, Channel</p>
+                    </div>
+                </div>
+                <div class="app-controls">
+                    <div class="control-group">
+                        <label class="control-label">Channel</label>
+                        <input type="text" class="control-input" data-field="channel" value="Design Masterclass">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Title</label>
+                        <input type="text" class="control-input" data-field="title" value="Creating Realistic Mockups - Full Tutorial">
+                    </div>
+                </div>
+                <div class="preview-area">
+                    <div class="youtube-video">
+                        <div class="youtube-player">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="youtube-info">
+                        <div class="youtube-title">Creating Realistic Mockups - Full Tutorial</div>
+                        <div class="youtube-channel">Design Masterclass • 25K views • 2 days ago</div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-generate" data-app="youtube">Generate</button>
+                    <button class="btn-download" data-app="youtube">Download</button>
+                </div>
+            </div>
+
+            <!-- HANGOUTS -->
+            <div class="app-generator" data-app="hangouts">
+                <div class="app-header">
+                    <div class="app-icon hangouts-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <div>
+                        <h3>Hangouts</h3>
+                        <p>Chat, Video Call</p>
+                    </div>
+                </div>
+                <div class="app-controls">
+                    <div class="control-group">
+                        <label class="control-label">Contact</label>
+                        <input type="text" class="control-input" data-field="contact" value="Sarah Johnson">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Message</label>
+                        <textarea class="control-input" data-field="message" rows="2">Are we still meeting at 3 PM today?</textarea>
+                    </div>
+                </div>
+                <div class="preview-area">
+                    <div class="hangouts-chat">
+                        <div class="hangouts-header">
+                            <div class="hangouts-avatar">SJ</div>
+                            <div class="hangouts-name">Sarah Johnson</div>
+                        </div>
+                        <div class="hangouts-message received">Are we still meeting at 3 PM today?</div>
+                        <div class="hangouts-message sent">Yes, I'll send you the link in a minute</div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-generate" data-app="hangouts">Generate</button>
+                    <button class="btn-download" data-app="hangouts">Download</button>
+                </div>
+            </div>
+
+            <!-- iMESSAGE -->
+            <div class="app-generator" data-app="imessage">
+                <div class="app-header">
+                    <div class="app-icon imessage-icon">
+                        <i class="fas fa-message"></i>
+                    </div>
+                    <div>
+                        <h3>iMessage</h3>
+                        <p>iPhone Text Messages</p>
+                    </div>
+                </div>
+                <div class="app-controls">
+                    <div class="control-group">
+                        <label class="control-label">Contact</label>
+                        <input type="text" class="control-input" data-field="contact" value="Mom">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Message</label>
+                        <textarea class="control-input" data-field="message" rows="2">Don't forget to pick up groceries on your way home</textarea>
+                    </div>
+                </div>
+                <div class="preview-area">
+                    <div class="imessage-container">
+                        <div class="imessage-bubble imessage-received">Don't forget to pick up groceries on your way home</div>
+                        <div class="imessage-bubble imessage-sent">Okay! I'll stop by the store. Need anything specific?</div>
+                        <div class="imessage-bubble imessage-received">Milk, eggs, and bread please</div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-generate" data-app="imessage">Generate</button>
+                    <button class="btn-download" data-app="imessage">Download</button>
+                </div>
+            </div>
+
+            <!-- ANDROID MESSAGES -->
+            <div class="app-generator" data-app="android-message">
+                <div class="app-header">
+                    <div class="app-icon android-message-icon">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <div>
+                        <h3>Android Messages</h3>
+                        <p>SMS/Text Messages</p>
+                    </div>
+                </div>
+                <div class="app-controls">
+                    <div class="control-group">
+                        <label class="control-label">Contact</label>
+                        <input type="text" class="control-input" data-field="contact" value="David">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Message</label>
+                        <textarea class="control-input" data-field="message" rows="2">Running 15 minutes late, sorry!</textarea>
+                    </div>
+                </div>
+                <div class="preview-area">
+                    <div class="android-message-container">
+                        <div class="android-header">
+                            <div class="android-contact">David</div>
+                            <div class="android-status">Mobile • 10:30 AM</div>
+                        </div>
+                        <div class="android-message received">Hey, where are you?</div>
+                        <div class="android-message sent">Running 15 minutes late, sorry!</div>
+                        <div class="android-message received">No problem, see you soon</div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-generate" data-app="android-message">Generate</button>
+                    <button class="btn-download" data-app="android-message">Download</button>
+                </div>
+            </div>
+
+            <!-- TELEGRAM -->
+            <div class="app-generator" data-app="telegram">
+                <div class="app-header">
+                    <div class="app-icon telegram-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <div>
+                        <h3>Telegram</h3>
+                        <p>Chat & Groups</p>
+                    </div>
+                </div>
+                <div class="app-controls">
+                    <div class="control-group">
+                        <label class="control-label">Contact/Group</label>
+                        <input type="text" class="control-input" data-field="contact" value="Design Group">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Message</label>
+                        <textarea class="control-input" data-field="message" rows="2">Has anyone tried the new Mockify tool?</textarea>
+                    </div>
+                </div>
+                <div class="preview-area">
+                    <div class="telegram-chat">
+                        <div class="telegram-header">
+                            <div class="telegram-name">Design Group</div>
+                            <div class="telegram-members">12 members</div>
+                        </div>
+                        <div class="telegram-message">
+                            <div class="telegram-sender">Alex:</div>
+                            <div class="telegram-text">Has anyone tried the new Mockify tool?</div>
+                        </div>
+                        <div class="telegram-message me">
+                            <div class="telegram-text">Yes! It's amazing for mockups</div>
+                            <div class="telegram-time">✓✓ 10:31</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-generate" data-app="telegram">Generate</button>
+                    <button class="btn-download" data-app="telegram">Download</button>
+                </div>
+            </div>
+
+            <!-- SNAPCHAT -->
+            <div class="app-generator" data-app="snapchat">
+                <div class="app-header">
+                    <div class="app-icon snapchat-icon">
+                        <i class="fab fa-snapchat"></i>
+                    </div>
+                    <div>
+                        <h3>Snapchat</h3>
+                        <p>Snaps & Chat</p>
+                    </div>
+                </div>
+                <div class="app-controls">
+                    <div class="control-group">
+                        <label class="control-label">Username</label>
+                        <input type="text" class="control-input" data-field="username" value="snap_designer">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Caption</label>
+                        <input type="text" class="control-input" data-field="caption" value="New design tool alert!">
+                    </div>
+                </div>
+                <div class="preview-area">
+                    <div class="snapchat-screen">
+                        <div class="snapchat-camera">
+                            <div class="snapchat-flash">⚡️</div>
+                        </div>
+                        <div class="snapchat-caption">New design tool alert!</div>
+                        <div class="snapchat-username">snap_designer</div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-generate" data-app="snapchat">Generate</button>
+                    <button class="btn-download" data-app="snapchat">Download</button>
+                </div>
+            </div>
+
+            <!-- LINKEDIN -->
+            <div class="app-generator" data-app="linkedin">
+                <div class="app-header">
+                    <div class="app-icon linkedin-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div>
+                        <h3>LinkedIn</h3>
+                        <p>Chat & Messages</p>
+                    </div>
+                </div>
+                <div class="app-controls">
+                    <div class="control-group">
+                        <label class="control-label">Contact</label>
+                        <input type="text" class="control-input" data-field="contact" value="Michael Chen">
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Message</label>
+                        <textarea class="control-input" data-field="message" rows="2">Hi Michael, I came across your profile and wanted to connect regarding design opportunities.</textarea>
+                    </div>
+                </div>
+                <div class="preview-area">
+                    <div class="linkedin-chat">
+                        <div class="linkedin-header">
+                            <div class="linkedin-avatar">MC</div>
+                            <div>
+                                <div class="linkedin-name">Michael Chen</div>
+                                <div class="linkedin-title">Senior Product Designer</div>
+                            </div>
+                        </div>
+                        <div class="linkedin-message received">Hi Michael, I came across your profile and wanted to connect regarding design opportunities.</div>
+                        <div class="linkedin-message sent">Hi! Thanks for reaching out. I'd be happy to connect.</div>
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <button class="btn-generate" data-app="linkedin">Generate</button>
+                    <button class="btn-download" data-app="linkedin">Download</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EXPORT SECTION -->
+    <section id="export" class="section">
+        <h2 class="section-title">Export Your Mockups</h2>
+        <div class="export-options">
+            <div class="export-option">
+                <div class="export-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <h3>Download as PNG</h3>
+                <p>High-quality PNG images of your mockups</p>
+            </div>
+            <div class="export-option">
+                <div class="export-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>HTML/CSS Code</h3>
+                <p>Get the code for your mockups</p>
+            </div>
+            <div class="export-option">
+                <div class="export-icon">
+                    <i class="fas fa-share-alt"></i>
+                </div>
+                <h3>Share Online</h3>
+                <p>Generate shareable links</p>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="section-container">
-            <h2 class="section-title">About Mockify</h2>
-            <p class="section-subtitle">Created for designers, by designers</p>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Mockify was born from a simple need: creating realistic chat and social media mockups without the hassle of complex design tools. As UI/UX designers ourselves, we found the existing solutions either too complicated or not realistic enough.</p>
-                    <p>Our mission is to provide designers, developers, content creators, and educators with a tool that's both powerful and easy to use. Whether you're prototyping a new app, creating social media content, or just having fun, Mockify has you covered.</p>
-                    <p>All data generated stays in your browser. We believe in privacy by design, which means we don't store your conversations, personal information, or generated content on our servers.</p>
-                    <div class="about-links">
-                        <a href="privacy.html" class="about-link">
-                            <i class="fas fa-shield-alt"></i> Privacy Policy
-                        </a>
-                        <a href="https://github.com/culrizz/mockify" class="about-link" target="_blank">
-                            <i class="fab fa-github"></i> GitHub Repository
-                        </a>
-                        <a href="mailto:support@mockify.com" class="about-link">
-                            <i class="fas fa-envelope"></i> Contact Us
-                        </a>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <div class="image-placeholder">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-main">
-                <div class="footer-brand">
-                    <div class="footer-logo">
-                        <i class="fas fa-comment-dots"></i>
-                        <span>Mockify</span>
-                    </div>
-                    <p class="footer-tagline">Create realistic chat mockups in seconds.</p>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                        <a href="#"><i class="fab fa-product-hunt"></i></a>
-                    </div>
+        <div class="footer-content">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <i class="fas fa-comment-dots"></i>
                 </div>
-                
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Product</h4>
-                        <ul>
-                            <li><a href="#features">Features</a></li>
-                            <li><a href="#pricing">Pricing</a></li>
-                            <li><a href="#templates">Templates</a></li>
-                            <li><a href="#generator">Generator</a></li>
-                            <li><a href="#">API Documentation</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Company</h4>
-                        <ul>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Careers</a></li>
-                            <li><a href="#">Press</a></li>
-                            <li><a href="#">Partners</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Support</h4>
-                        <ul>
-                            <li><a href="#">Help Center</a></li>
-                            <li><a href="#">Community</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Status</a></li>
-                            <li><a href="#">Report Abuse</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Legal</h4>
-                        <ul>
-                            <li><a href="privacy.html">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Cookie Policy</a></li>
-                            <li><a href="#">GDPR</a></li>
-                            <li><a href="#">CCPA</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <div class="logo-text">MOCKIFY</div>
             </div>
-            
-            <div class="footer-bottom">
-                <p class="copyright">&copy; 2024 Mockify. All rights reserved. Created with <i class="fas fa-heart"></i> for the design community.</p>
-                <div class="footer-meta">
-                    <span>v1.0.0</span>
-                    <a href="sitemap.xml">Sitemap</a>
-                    <a href="robots.txt">Robots.txt</a>
-                </div>
+            <p class="footer-tagline">Create realistic social media mockups in seconds</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+                <a href="#">GitHub</a>
             </div>
+            <p class="copyright">© 2024 Mockify. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <span id="toast-message">Message copied to clipboard!</span>
-        <button id="toast-close">&times;</button>
-    </div>
+    <!-- JAVASCRIPT -->
+    <script>
+        // MOCKIFY - Social Media Mockup Generator
+        document.addEventListener('DOMContentLoaded', function() {
+            // Device Selection
+            const deviceOptions = document.querySelectorAll('.device-option');
+            const deviceFrame = document.querySelector('.device-frame');
+            const previewScreen = document.getElementById('preview-screen');
+            
+            deviceOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Update active device
+                    deviceOptions.forEach(opt => opt.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Update device frame
+                    const device = this.dataset.device;
+                    deviceFrame.className = 'device-frame';
+                    deviceFrame.classList.add(`${device}-frame`);
+                    
+                    // Add notch for phones
+                    if (device === 'iphone' || device === 'samsung') {
+                        if (!deviceFrame.querySelector('.device-notch')) {
+                            const notch = document.createElement('div');
+                            notch.className = `device-notch ${device === 'samsung' ? 'samsung-notch' : ''}`;
+                            deviceFrame.prepend(notch);
+                        }
+                    } else {
+                        const notch = deviceFrame.querySelector('.device-notch');
+                        if (notch) notch.remove();
+                    }
+                });
+            });
+            
+            // App Generator Controls
+            const generateButtons = document.querySelectorAll('.btn-generate');
+            const downloadButtons = document.querySelectorAll('.btn-download');
+            
+            generateButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const app = this.dataset.app;
+                    const generator = this.closest('.app-generator');
+                    
+                    // Get all input values
+                    const inputs = generator.querySelectorAll('.control-input');
+                    const data = {};
+                    
+                    inputs.forEach(input => {
+                        const field = input.dataset.field;
+                        data[field] = input.value;
+                    });
+                    
+                    // Generate preview
+                    generatePreview(app, data, generator);
+                    
+                    // Show success message
+                    showToast(`${app.charAt(0).toUpperCase() + app.slice(1)} mockup generated!`);
+                });
+            });
+            
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const app = this.dataset.app;
+                    const generator = this.closest('.app-generator');
+                    const preview = generator.querySelector('.preview-area > div');
+                    
+                    if (preview) {
+                        // In a real implementation, you would use html2canvas or similar
+                        // For now, we'll simulate download
+                        simulateDownload(app, preview);
+                    }
+                });
+            });
+            
+            // Generate Preview Function
+            function generatePreview(app, data, generator) {
+                const previewArea = generator.querySelector('.preview-area');
+                
+                // Clear existing preview
+                previewArea.innerHTML = '';
+                
+                // Create appropriate preview based on app
+                let previewHTML = '';
+                
+                switch(app) {
+                    case 'whatsapp':
+                        previewHTML = `
+                            <div class="whatsapp-chat">
+                                <div class="whatsapp-header">
+                                    <div class="whatsapp-avatar">${data['contact-name']?.charAt(0) || 'A'}</div>
+                                    <div>
+                                        <div class="whatsapp-name">${data['contact-name'] || 'Alex Morgan'}</div>
+                                        <div class="whatsapp-status">online</div>
+                                    </div>
+                                </div>
+                                <div class="whatsapp-messages">
+                                    <div class="whatsapp-message whatsapp-received">${data.message || 'Hey there!'}</div>
+                                    <div class="whatsapp-message whatsapp-sent">This looks amazing!</div>
+                                </div>
+                            </div>
+                        `;
+                        break;
+                        
+                    case 'instagram':
+                        previewHTML = `
+                            <div class="instagram-post">
+                                <div class="instagram-header">
+                                    <div class="instagram-avatar">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div>
+                                        <div class="instagram-username">${data.username || '@designer'}</div>
+                                        <div class="instagram-location">New York, NY</div>
+                                    </div>
+                                </div>
+                                <div class="instagram-image">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                                <div class="instagram-actions">
+                                    <i class="far fa-heart"></i>
+                                    <i class="far fa-comment"></i>
+                                    <i class="far fa-paper-plane"></i>
+                                    <i class="far fa-bookmark" style="margin-left: auto;"></i>
+                                </div>
+                                <div class="instagram-likes">2,543 likes</div>
+                                <div class="instagram-caption">
+                                    <strong>${data.username || '@designer'}</strong> ${data.caption || 'Just created this amazing mockup!'}
+                                </div>
+                            </div>
+                        `;
+                        break;
+                        
+                    case 'imessage':
+                        previewHTML = `
+                            <div class="imessage-container">
+                                <div class="imessage-bubble imessage-received">${data.message || 'Hello!'}</div>
+                                <div class="imessage-bubble imessage-sent">Hey! How are you?</div>
+                                <div class="imessage-bubble imessage-received">I'm good, just checking out Mockify</div>
+                            </div>
+                        `;
+                        break;
+                        
+                    // Add cases for other apps...
+                    default:
+                        previewHTML = `<div style="padding: 20px; text-align: center; color: #666;">Preview for ${app}</div>`;
+                }
+                
+                previewArea.innerHTML = previewHTML;
+                
+                // Update device preview screen
+                if (previewScreen) {
+                    previewScreen.innerHTML = previewArea.innerHTML;
+                }
+            }
+            
+            // Simulate Download
+            function simulateDownload(app, element) {
+                // In a real app, you would use:
+                // html2canvas(element).then(canvas => {
+                //     const link = document.createElement('a');
+                //     link.download = `mockify-${app}-${Date.now()}.png`;
+                //     link.href = canvas.toDataURL();
+                //     link.click();
+                // });
+                
+                // For demo purposes:
+                showToast(`Downloading ${app} mockup as PNG...`);
+                
+                // Simulate download delay
+                setTimeout(() => {
+                    showToast(`${app.charAt(0).toUpperCase() + app.slice(1)} mockup downloaded successfully!`);
+                }, 1000);
+            }
+            
+            // Toast Notification System
+            function showToast(message) {
+                // Create toast if it doesn't exist
+                let toast = document.getElementById('mockify-toast');
+                if (!toast) {
+                    toast = document.createElement('div');
+                    toast.id = 'mockify-toast';
+                    toast.style.cssText = `
+                        position: fixed;
+                        bottom: 20px;
+                        right: 20px;
+                        background: var(--mockify-gradient);
+                        color: white;
+                        padding: 12px 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                        transform: translateY(100px);
+                        opacity: 0;
+                        transition: all 0.3s ease;
+                        z-index: 1000;
+                    `;
+                    document.body.appendChild(toast);
+                }
+                
+                toast.textContent = message;
+                toast.style.transform = 'translateY(0)';
+                toast.style.opacity = '1';
+                
+                // Auto hide after 3 seconds
+                setTimeout(() => {
+                    toast.style.transform = 'translateY(100px)';
+                    toast.style.opacity = '0';
+                }, 3000);
+            }
+            
+            // Initialize first app preview
+            const firstGenerator = document.querySelector('.app-generator');
+            if (firstGenerator) {
+                const app = firstGenerator.dataset.app;
+                const inputs = firstGenerator.querySelectorAll('.control-input');
+                const data = {};
+                
+                inputs.forEach(input => {
+                    const field = input.dataset.field;
+                    data[field] = input.value;
+                });
+                
+                generatePreview(app, data, firstGenerator);
+            }
+            
+            // Add interactivity to app generators
+            const appGenerators = document.querySelectorAll('.app-generator');
+            appGenerators.forEach(generator => {
+                generator.addEventListener('click', function(e) {
+                    if (!e.target.closest('.btn-generate') && !e.target.closest('.btn-download')) {
+                        // Highlight selected generator
+                        appGenerators.forEach(g => g.classList.remove('selected'));
+                        this.classList.add('selected');
+                        
+                        // Update device preview
+                        const app = this.dataset.app;
+                        const inputs = this.querySelectorAll('.control-input');
+                        const data = {};
+                        
+                        inputs.forEach(input => {
+                            const field = input.dataset.field;
+                            data[field] = input.value;
+                        });
+                        
+                        generatePreview(app, data, this);
+                    }
+                });
+            });
+        });
+    </script>
 
-    <script src="script.js"></script>
+    <style>
+        /* Additional Styles */
+        .navbar {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #475569;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            background: #f1f5f9;
+            color: var(--mockify-primary);
+        }
+        
+        .nav-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-login {
+            background: none;
+            border: 2px solid #e2e8f0;
+            padding: 8px 20px;
+            border-radius: 8px;
+            color: #475569;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--mockify-gradient);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--mockify-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+        
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--mockify-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: #64748b;
+            margin-bottom: 3rem;
+        }
+        
+        .device-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .device-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 120px;
+        }
+        
+        .device-option:hover {
+            border-color: var(--mockify-primary);
+            background: #f8fafc;
+        }
+        
+        .device-option.active {
+            border-color: var(--mockify-primary);
+            background: var(--mockify-gradient);
+            color: white;
+        }
+        
+        .device-option i {
+            font-size: 2rem;
+        }
+        
+        .device-preview {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .app-generator.selected {
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.2);
+            border: 2px solid var(--mockify-primary);
+        }
+        
+        .export-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .export-option {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .export-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--mockify-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 auto 1rem;
+        }
+        
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .footer-tagline {
+            color: #94a3b8;
+            margin: 1rem 0;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .device-selector {
+                gap: 0.5rem;
+            }
+            
+            .device-option {
+                min-width: 100px;
+                padding: 15px;
+            }
+        }
+    </style>
 </body>
 </html>
